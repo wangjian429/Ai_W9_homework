@@ -31,11 +31,11 @@ pipeline_config_path=$output_dir/$config
 # 因为dataset里面的东西是不允许修改的，所以这里要把config文件复制一份到输出目录
 cp $dataset_dir/$config $pipeline_config_path
 
-for i in {0..4}  # for循环中的代码执行5此，这里的左右边界都包含，也就是一共训练500个step，每100step验证一次
+for i in {0..100}  # for循环中的代码执行5此，这里的左右边界都包含，也就是一共训练500个step，每100step验证一次
 do
     echo "############" $i "runnning #################"
-    last=$[$i*100]
-    current=$[($i+1)*100]
+    last=$[$i*3000]
+    current=$[($i+1)*3000]
     sed -i "s/^  num_steps: $last$/  num_steps: $current/g" $pipeline_config_path  # 通过num_steps控制一次训练最多100step
 
     echo "############" $i "training #################"
