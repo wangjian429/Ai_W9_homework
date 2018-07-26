@@ -21,7 +21,7 @@ eval_dir=$output_dir/eval
 #config=ssd_resnet50_v1_fpn.config
 #config=faster_rcnn_nas.config
 #config=faster_rcnn_resnet101.config
-config=ssd_mobilenet_v1_fpn_3.config
+config=ssd_mobilenet_v1_fpn_4.config
 pipeline_config_path=$output_dir/$config
 
 # 先清空输出目录，本地运行会有效果，tinymind上运行这一行没有任何效果
