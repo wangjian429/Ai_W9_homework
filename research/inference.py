@@ -61,6 +61,9 @@ if __name__ == '__main__':
             (boxes, scores, classes, num) = sess.run(
                 [detection_boxes, detection_scores, detection_classes, num_detections],
                 feed_dict={image_tensor: image_np_expanded})
+            print(boxes)
+            print(scores)
+            print(classes)
             vis_util.visualize_boxes_and_labels_on_image_array(
                 image_np,
                 np.squeeze(boxes),
