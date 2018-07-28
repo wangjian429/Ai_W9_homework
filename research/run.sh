@@ -17,8 +17,8 @@ checkpoint_dir=$train_dir
 eval_dir=$output_dir/eval
 
 # config文件
-config=fastresnet.config
-#config=ssd_resnet50_v1_fpn.config
+#config=fastresnet.config
+config=ssd_mobilenet_v1_pets.config
 #config=faster_rcnn_nas.config
 #config=faster_rcnn_resnet101.config
 #config=ssd_mobilenet_v1_fpn_4.config
@@ -32,11 +32,11 @@ pipeline_config_path=$output_dir/$config
 #cp $dataset_dir/$config $pipeline_config_path
 cp $config $pipeline_config_path
 cp /data/wangjian429/classall/pet_train.record $output_dir
-for i in {0..100}  # for循环中的代码执行5此，这里的左右边界都包含，也就是一共训练500个step，每100step验证一次
+for i in {0..5}  # for循环中的代码执行5此，这里的左右边界都包含，也就是一共训练500个step，每100step验证一次
 do
     echo "############" $i "runnning #################"
-    last=$[$i*80000]
-    current=$[($i+1)*80000]
+    last=$[$i*8000]
+    current=$[($i+1)*8000]
     sed -i "s/^  num_steps: $last$/  num_steps: $current/g" $pipeline_config_path  # 通过num_steps控制一次训练最多100step
 
     echo "############" $i "training #################"
