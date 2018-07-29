@@ -32,22 +32,16 @@ pipeline_config_path=$output_dir/$config
 #cp $dataset_dir/$config $pipeline_config_path
 cp $config $pipeline_config_path
 
-for i in {0..2}  # for循环中的代码执行5此，这里的左右边界都包含，也就是一共训练500个step，每100step验证一次
-do
-    echo "############" $i "runnning #################"
-    last=$[$i*24000]
-    current=$[($i+1)*24000]
-    sed -i "s/^  num_steps: $last$/  num_steps: $current/g" $pipeline_config_path  # 通过num_steps控制一次训练最多100step
 
-    echo "############" $i "training #################"
-    python ./object_detection/train.py --train_dir=$train_dir --pipeline_config_path=$pipeline_config_path
+echo "############training #################"
+python ./object_detection/train.py --train_dir=$train_dir --pipeline_config_path=$pipeline_config_path
 
-    echo "############" $i "evaluating, this takes a long while #################"
-    python ./object_detection/eval.py --checkpoint_dir=$checkpoint_dir --eval_dir=$eval_dir --pipeline_config_path=$pipeline_config_path
-done
+echo "############evaluating, this takes a long while #################"
+python ./object_detection/eval.py --checkpoint_dir=$checkpoint_dir --eval_dir=$eval_dir --pipeline_config_path=$pipeline_config_path
+
 
 # 导出模型
-python ./object_detection/export_inference_graph.py --input_type image_tensor --pipeline_config_path $pipeline_config_path --trained_checkpoint_prefix $train_dir/model.ckpt-$current  --output_directory $output_dir/exported_graphs
+python ./object_detection/export_inference_graph.py --input_type image_tensor --pipeline_config_path $pipeline_config_path --trained_checkpoint_prefix $train_dir/model.ckpt-30000  --output_directory $output_dir/exported_graphs
 
 # 在test.jpg上验证导出的模型
 python ./inference.py --output_dir=$output_dir --dataset_dir=$dataset_dir
