@@ -17,8 +17,8 @@ checkpoint_dir=$train_dir
 eval_dir=$output_dir/eval
 
 # config文件
-#config=fastresnet.config
-config=ssd_mobilenet_v1_pets.config
+config=fastresnet.config
+#config=ssd_mobilenet_v1_pets.config
 #config=faster_rcnn_nas.config
 #config=faster_rcnn_resnet101.config
 #config=ssd_mobilenet_v1_fpn_4.config
