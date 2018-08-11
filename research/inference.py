@@ -26,7 +26,7 @@ def parse_args(check=True):
 if __name__ == '__main__':
     FLAGS, unparsed = parse_args()
 
-    PATH_TO_CKPT = os.path.join(FLAGS.output_dir, 'exported_graphs2/frozen_inference_graph.pb')
+    PATH_TO_CKPT = os.path.join(FLAGS.output_dir, 'exported_graphs3/frozen_inference_graph.pb')
     PATH_TO_LABELS = os.path.join(FLAGS.dataset_dir, 'labels_items.txt')
 
     detection_graph = tf.Graph()
