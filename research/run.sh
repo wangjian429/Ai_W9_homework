@@ -41,7 +41,7 @@ python ./object_detection/eval.py --checkpoint_dir=$checkpoint_dir --eval_dir=$e
 
 
 # 导出模型
-python ./object_detection/export_inference_graph.py --input_type image_tensor --pipeline_config_path $pipeline_config_path --trained_checkpoint_prefix $train_dir/model.ckpt-40000  --output_directory $output_dir/exported_graphs
+python ./object_detection/export_inference_graph.py --input_type image_tensor --pipeline_config_path $pipeline_config_path --trained_checkpoint_prefix $train_dir/model.ckpt-60000  --output_directory $output_dir/exported_graphs2
 
 # 在test.jpg上验证导出的模型
 python ./inference.py --output_dir=$output_dir --dataset_dir=$dataset_dir
